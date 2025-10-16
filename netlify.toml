@@ -1,1 +1,20 @@
+# Configurações de build para a Netlify
+[build]
+  # Comando para construir o site. Ele executa "tsc && vite build"
+  # conforme definido no seu package.json.
+  command = "npm run build"
+  
+  # Diretório que contém os arquivos do site após o build.
+  # O Vite, por padrão, coloca os arquivos no diretório "dist".
+  publish = "dist"
+  
+  # Diretório onde as suas funções serverless (como a gemini.ts) estão localizadas.
+  functions = "netlify/functions"
 
+# Regra de redirecionamento para garantir que o roteamento do React (SPA) funcione.
+# Todas as requisições que não encontrarem um arquivo correspondente serão
+# redirecionadas para o index.html, permitindo que o React cuide da rota.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
